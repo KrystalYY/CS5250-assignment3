@@ -41,13 +41,13 @@ ssize_t onebyte_read(struct file *filep, char *buf, size_t count, loff_t *f_pos)
 {    
      if (sizeof(*onebyte_data) > 0 && *onebyte_data != '\0') {
      	int resp = 0;
-	resp = copy_to_user(buf, onebyte_data, 1);
-	if (resp == 0) {
-	    *onebyte_data = '\0';
-            return 1;
-	} else {
-	    return -EFAULT;
-	}	
+	     resp = copy_to_user(buf, onebyte_data, 1);
+          if (resp == 0) {
+               *onebyte_data = '\0';
+               return 1;
+          } else {
+               return -EFAULT;
+          }	
      } else {
      	return 0;
      }
